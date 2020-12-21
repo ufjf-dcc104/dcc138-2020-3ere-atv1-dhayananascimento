@@ -22,10 +22,13 @@
       function desenha(t) {  
         t0 = t0 ?? t;
         dt = (t - t0)/1000;
-          
+
         //Desenha fundo
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        //Atualiza estado
+        x = x + 10*dt;
 
         //Desenha elementos
         ctx.fillStyle = "white";
