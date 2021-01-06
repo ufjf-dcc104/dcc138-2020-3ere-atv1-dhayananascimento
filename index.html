@@ -14,6 +14,7 @@
       let ctx = canvas.getContext("2d");
       canvas.width = 480;
       canvas.height = 320;
+      const V = 180;
       let x = 150;
       let y = 100;
       let vx = 0;
@@ -67,16 +68,16 @@
         //Adiciona controle de velocidades
         switch (e.key) {
           case "ArrowUp":
-            vy = -20;
+            vy = -V;
             break;
           case "ArrowDown":
-            vy = +20;
+            vy = +V;
             break;
           case "ArrowLeft":
-            vx = -20;
+            vx = -V;
             break;
           case "ArrowRight":
-            vx = +20;
+            vx = +V;
             break;
         }
       }
