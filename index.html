@@ -15,6 +15,10 @@
       canvas.width = 480;
       canvas.height = 320;
 
+      const K = 180;
+      let t0;
+      let dt;
+
       let p = {
         x: 150,
         y: 100,
@@ -22,20 +26,24 @@
         vy: 0,
         ax: 0,
         ay: 0,
+        desenhar: function () {
+          ctx.fillStyle = "white";
+          ctx.fillRect(this.x, this.y, 20, 20);
+        },
       };
 
-      const K = 180;
-      let t0;
-      let dt;
-
       let e = {
-          x: 350,
-          y: 200,
-          vx: 0,
-          vy: 0,
-          ax: 0,
-          ay: 0,
-      }
+        x: 350,
+        y: 200,
+        vx: 0,
+        vy: 0,
+        ax: 0,
+        ay: 0,
+        desenhar: function () {
+          ctx.fillStyle = "orange";
+          ctx.fillRect(this.x, this.y, 20, 20);
+        },
+      };
 
       requestAnimationFrame(desenha);
 
@@ -62,13 +70,9 @@
         e.x = e.x + e.vx * dt;
         e.y = e.y + e.vy * dt;
 
-        //Desenha elemento 1
-        ctx.fillStyle = "white";
-        ctx.fillRect(p.x, p.y, 20, 20);
-
-        //Desenha elemento 2
-        ctx.fillStyle = "orange";
-        ctx.fillRect(e.x, e.y, 20, 20);
+        //Desenha elementos
+        p.desenhar();
+        e.desenhar();
 
         requestAnimationFrame(desenha);
         t0 = t;
@@ -81,19 +85,15 @@
         //Adiciona controle de velocidades
         switch (event.key) {
           case "ArrowUp":
-            p.vy = 0;
             p.ay = 0;
             break;
           case "ArrowDown":
-            p.vy = 0;
             p.ay = 0;
             break;
           case "ArrowLeft":
-            p.vx = 0;
             p.ax = 0;
             break;
           case "ArrowRight":
-            p.vx = 0;
             p.ax = 0;
             break;
         }
