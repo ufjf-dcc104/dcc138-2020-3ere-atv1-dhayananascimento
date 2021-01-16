@@ -31,18 +31,23 @@
         mover: moverElemento,
       };
 
-      let e = {
-        x: 350,
-        y: 200,
-        vx: 0,
-        vy: 0,
-        ax: 0,
-        ay: 0,
-        cor: "red",
-        desenhar: desenharElemento,
-        mover: moverElemento,
-        controlar: perseguirAlvo,
-      };
+      const sprites = [];
+
+      for (let ne = 0; ne < 20; ne++) {
+        let e = {
+          x: canvas.width * Math.random(),
+          y: canvas.height * Math.random(),
+          vx: 0,
+          vy: 0,
+          ax: 0,
+          ay: 0,
+          cor: "red",
+          desenhar: desenharElemento,
+          mover: moverElemento,
+          controlar: perseguirAlvo,
+        };
+        sprites.push(e);
+      }
 
       requestAnimationFrame(desenha);
 
@@ -54,18 +59,20 @@
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        //Controladores
-        // e.controlar({x:250, y:120});
-        e.controlar(p);
-
-
-        //Atualiza dinamica dos estados
         p.mover();
-        e.mover();
-
-        //Desenha elementos
         p.desenhar();
-        e.desenhar();
+
+        for (let s = 0; s < sprites.length; s++) {
+          const sprite = sprites[s];
+
+          //Controladores
+          // sprite.controlar({x:250, y:120});
+          sprite.controlar(p);
+          //Atualiza dinamica dos estados
+          sprite.mover();
+          //Desenha elementos
+          sprite.desenhar();
+        }
 
         requestAnimationFrame(desenha);
         t0 = t;
